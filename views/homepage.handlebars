@@ -1,0 +1,23 @@
+{{!-- Extend the main layout --}}
+{{#extend "main"}}
+  {{#content "body"}}
+    <h2>Welcome to {{siteName}}</h2>
+
+    {{#if user}}
+      <p>Hello, {{user.username}}!</p>
+    {{else}}
+      <p>Guest user. <a href="/login">Login</a> to create and comment on blog posts.</p>
+    {{/if}}
+
+    <h3>Latest Blog Posts</h3>
+    <ul class="blog-posts">
+      {{#each posts}}
+        <li>
+          <h4><a href="/post/{{id}}">{{title}}</a></h4>
+          <p>{{formatDate createdAt}}</p>
+          <p>{{truncateText content 200}}</p>
+        </li>
+      {{/each}}
+    </ul>
+  {{/content}}
+{{/extend}}
